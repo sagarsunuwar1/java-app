@@ -12,9 +12,9 @@ pipeline {
                 echo 'Running unittest'
             }
         }
-            stage('Unittest') {
+            stage('Createdockerimage') {
             	steps {
-                  echo 'Running unittest'
+                  echo 'creaing docker image'
             }
         }
     }
