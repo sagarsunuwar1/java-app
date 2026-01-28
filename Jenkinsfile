@@ -18,7 +18,7 @@ pipeline {
           stage('Build docker image') {
             steps {
                 echo 'building image'
-		sh 'docker build -t myregistry.local/myapp:"$BUILD_NUMBER"'
+		sh 'docker build -t myregistry.local/myapp:"$BUILD_NUMBER" .'
             }
         }
             stage('Createdockerimage') {
