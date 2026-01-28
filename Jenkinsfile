@@ -24,7 +24,7 @@ pipeline {
             stage('Trivy scan docker image') {
             	steps {
                   echo 'scanning image'
-		  sh 'tivy image myregistry.local/myapp:"$BUILD_NUMBER"'
+		  sh 'trivy image myregistry.local/myapp:"$BUILD_NUMBER"'
             }
         }
     }
