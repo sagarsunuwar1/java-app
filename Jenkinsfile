@@ -15,9 +15,10 @@ pipeline {
         }
     }
 }
-          stage('Unittest') {
+          stage('Build docker image') {
             steps {
-                echo 'Running unittest'
+                echo 'building image'
+		sh 'docker build -t myregistry.local/myapp:"$BUILD_NUMBER"'
             }
         }
             stage('Createdockerimage') {
