@@ -42,6 +42,19 @@ pipeline {
 		  '''
             }
         }
+	    stage('Deploy to prod env') {
+                steps {
+		       timeout(time:1, unit:'MINUTES'){
+		       input message:'Approve Production deployment?'
+		       }
+                  echo 'prod deployment'
+                  sh '''
+                  docker stop myapp-prod || true
+                  docker rm myapp-prod   || true
+                  docker run -d --name myapp-production -p 9091:8080 myregistry.local/myapp:"$BUILD_NUMBER"
+                  '''
+            }
+        }
     }
 }
 
