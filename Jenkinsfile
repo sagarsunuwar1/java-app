@@ -27,6 +27,17 @@ pipeline {
 		  sh 'trivy image myregistry.local/myapp:"$BUILD_NUMBER"'
             }
         }
+	     stage('Upload image to docker registry') {
+                steps {
+                  echo 'Uploading image'
+            }
+        }
+	     stage('Deploy to staging env') {
+                steps {
+                  echo 'staging env'
+                  sh 'docker run -d --name myapp-staging -p 9090:8080 myregistry.local/myapp:"$BUILD_NUMBER"'
+            }
+        }
     }
 }
 
