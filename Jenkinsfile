@@ -49,8 +49,8 @@ pipeline {
 		       }
                   echo 'prod deployment'
                   sh '''
-                  docker stop myapp-prod || true
-                  docker rm myapp-prod   || true
+                  docker stop myapp-production || true
+                  docker rm myapp-production   || true
                   docker run -d --name myapp-production -p 9091:8080 myregistry.local/myapp:"$BUILD_NUMBER"
                   '''
             }
