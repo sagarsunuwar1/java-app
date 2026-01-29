@@ -35,7 +35,11 @@ pipeline {
 	     stage('Deploy to staging env') {
                 steps {
                   echo 'staging env'
-                  sh 'docker run -d --name myapp-staging -p 9090:8080 myregistry.local/myapp:"$BUILD_NUMBER"'
+                  sh '''
+		  docker stop myapp-staging || true
+		  docker rm myapp-staging   || true 
+		  docker run -d --name myapp-staging -p 9090:8080 myregistry.local/myapp:"$BUILD_NUMBER"
+		  '''
             }
         }
     }
