@@ -56,5 +56,15 @@ pipeline {
             }
         }
     }
+	post {
+		always {
+			echo 'Build compleated, now clearing the workspace'
+			}
+			success {
+				echo "Build successfull"
+				}
+			failure {
+				echo "Build failed"
+				}
 }
 
